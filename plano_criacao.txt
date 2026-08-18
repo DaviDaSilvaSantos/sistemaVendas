@@ -1,0 +1,51 @@
+RF - Requisitos Funcionais
+RNF - Requisitos Não Funcionais
+
+-- / - / --
+
+RF - Dados do Cliente
+
+- nome, contato e CPF
+
+RF - Nota Fiscal
+
+- nome dos produtos, quantidade, valor individual e valor final
+
+RF - Formas de Pagamento
+
+- cartão débito, crédito, dinheiro e pix
+
+RNF - Interface Gráfica
+
+- Autoexplicativo
+
+-- / - / --
+
+Banco de Dados
+
+- Table cliente
+
+	nome, contato, cpf (primary key)
+
+- Table compras
+
+	nome_produto, qntd_produto, valor_uni, valor_final, forma_pagamento, cpf_cliente (foreign key), nome_cliente
+
+-- / - / --  
+
+Técnologias que serão utilizadas
+
+- JAVA & BD
+
+-- / - / --
+
+CREATE DATABASE MERCADINHO;
+
+USE MERCADINHO;
+
+CREATE TABLE CLIENTES(NOME VARCHAR(255) NOT NULL, CONTATO VARCHAR(25) NOT NULL, CPF VARCHAR(14) NOT NULL, PRIMARY KEY(CPF));
+
+CREATE TABLE COMPRAS(NOME_PRODUTO VARCHAR(255) NOT NULL, QNTD_PRODUTO INTEGER NOT NULL, 
+VALOR_UNI FLOAT NOT NULL, VALOR_FINAL FLOAT NOT NULLL, 
+FORMA_PAGAMENTO VARCHAR(25) NOT NULL, CPF_CLIENTE VARCHAR(14) NOT NULL,
+NOME_CLIENTE VARCHAR(255) NOT NULL, FOREIGN KEY(CPF_CLIENTE) REFERENCES CLIENTES(CPF));
