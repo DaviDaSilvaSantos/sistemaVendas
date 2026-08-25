@@ -39,34 +39,34 @@ O projeto segue o padrão de arquitetura **MVC (Model-View-Controller)** para ga
 ### Requisitos Funcionais (RF)
 
 - **RF01 - Dados do Cliente**: O sistema deve permitir o cadastro de clientes armazenando **Nome**, **Contato** e **CPF**.
-- **RF02 - Nota Fiscal**: O sistema deve registrar e exibir na nota fiscal o **Nome dos Produtos**, **Quantidade**, **Valor Individual** e calcular o **Valor Final**[cite: 6].
-- **RF03 - Formas de Pagamento**: O sistema deve permitir a escolha entre as formas de pagamento: **Cartão de Débito**, **Cartão de Crédito**, **Dinheiro** e **Pix**[cite: 6].
+- **RF02 - Nota Fiscal**: O sistema deve registrar e exibir na nota fiscal o **Nome dos Produtos**, **Quantidade**, **Valor Individual** e calcular o **Valor Final**.
+- **RF03 - Formas de Pagamento**: O sistema deve permitir a escolha entre as formas de pagamento: **Cartão de Débito**, **Cartão de Crédito**, **Dinheiro** e **Pix**.
 
-### Requisitos Não Funcionais (RNF)[cite: 6]
+### Requisitos Não Funcionais (RNF)
 
 - **RNF01 - Interface Gráfica**: A interface deve ser **autoexplicativa**, intuitiva e amigável para os operadores do sistema[cite: 6].
 
 ---
 
-## 🗄️ Banco de Dados[cite: 6]
+## 🗄️ Banco de Dados
 
-O banco de dados relacional é nomeado `MERCADINHO` e conta com duas tabelas principais (`CLIENTES` e `COMPRAS`)[cite: 6]:
+O banco de dados relacional é nomeado `MERCADINHO` e conta com duas tabelas principais (`CLIENTES` e `COMPRAS`):
 
-### Tabela `CLIENTES`[cite: 6]
-* `NOME` (VARCHAR 255)[cite: 6]
-* `CONTATO` (VARCHAR 25)[cite: 6]
-* `CPF` (VARCHAR 14) — *Primary Key*[cite: 6]
+### Tabela `CLIENTES`
+* `NOME` (VARCHAR 255)
+* `CONTATO` (VARCHAR 25)
+* `CPF` (VARCHAR 14) — *Primary Key*
 
-### Tabela `COMPRAS`[cite: 6]
-* `NOME_PRODUTO` (VARCHAR 255)[cite: 6]
-* `QNTD_PRODUTO` (INTEGER)[cite: 6]
-* `VALOR_UNI` (FLOAT)[cite: 6]
-* `VALOR_FINAL` (FLOAT)[cite: 6]
-* `FORMA_PAGAMENTO` (VARCHAR 25)[cite: 6]
-* `CPF_CLIENTE` (VARCHAR 14) — *Foreign Key que referencia CLIENTES(CPF)*[cite: 6]
-* `NOME_CLIENTE` (VARCHAR 255)[cite: 6]
+### Tabela `COMPRAS`
+* `NOME_PRODUTO` (VARCHAR 255)
+* `QNTD_PRODUTO` (INTEGER)
+* `VALOR_UNI` (FLOAT)
+* `VALOR_FINAL` (FLOAT)
+* `FORMA_PAGAMENTO` (VARCHAR 25)
+* `CPF_CLIENTE` (VARCHAR 14) — *Foreign Key que referencia CLIENTES(CPF)*
+* `NOME_CLIENTE` (VARCHAR 255)
 
-### Script SQL para Criação do Banco[cite: 6]
+### Script SQL para Criação do Banco
 
 ```sql
 CREATE DATABASE MERCADINHO;
