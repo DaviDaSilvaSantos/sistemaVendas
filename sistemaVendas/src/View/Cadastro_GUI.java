@@ -38,6 +38,7 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         CPF_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        enviar_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -51,11 +52,11 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(8, 2, 450, 30);
         jPanel1.add(nome_txt);
-        nome_txt.setBounds(20, 80, 420, 20);
+        nome_txt.setBounds(20, 80, 420, 22);
 
         jLabel2.setText("Nome Completo:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 60, 180, 14);
+        jLabel2.setBounds(20, 60, 180, 16);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -75,9 +76,9 @@ public class Cadastro_GUI extends javax.swing.JFrame {
 
         jLabel3.setText("Contato:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 130, 180, 14);
+        jLabel3.setBounds(20, 130, 180, 16);
         jPanel1.add(contato_txt);
-        contato_txt.setBounds(20, 150, 420, 20);
+        contato_txt.setBounds(20, 150, 420, 22);
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -95,11 +96,11 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(10, 120, 440, 60);
         jPanel1.add(CPF_txt);
-        CPF_txt.setBounds(20, 230, 420, 20);
+        CPF_txt.setBounds(20, 230, 420, 22);
 
         jLabel4.setText("Contato:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 210, 180, 14);
+        jLabel4.setBounds(20, 210, 180, 16);
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -117,12 +118,26 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 200, 440, 60);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 460, 420);
+        enviar_btn.setText("Enviar");
+        enviar_btn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        enviar_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviar_btnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(enviar_btn);
+        enviar_btn.setBounds(140, 280, 170, 70);
 
-        setSize(new java.awt.Dimension(450, 420));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 480, 430);
+
+        setSize(new java.awt.Dimension(479, 429));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enviar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_btnActionPerformed
+        Model.Funcoes_DAO.salvarInformacoes();
+    }//GEN-LAST:event_enviar_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,6 +177,7 @@ public class Cadastro_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField CPF_txt;
     public static javax.swing.JTextField contato_txt;
+    private javax.swing.JButton enviar_btn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
