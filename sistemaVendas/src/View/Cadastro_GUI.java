@@ -52,11 +52,11 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(8, 2, 450, 30);
         jPanel1.add(nome_txt);
-        nome_txt.setBounds(20, 80, 420, 20);
+        nome_txt.setBounds(20, 80, 420, 22);
 
         jLabel2.setText("Nome Completo:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 60, 180, 14);
+        jLabel2.setBounds(20, 60, 180, 16);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -76,9 +76,9 @@ public class Cadastro_GUI extends javax.swing.JFrame {
 
         jLabel3.setText("Contato:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 130, 180, 14);
+        jLabel3.setBounds(20, 130, 180, 16);
         jPanel1.add(contato_txt);
-        contato_txt.setBounds(20, 150, 420, 20);
+        contato_txt.setBounds(20, 150, 420, 22);
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -96,11 +96,11 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(10, 120, 440, 60);
         jPanel1.add(CPF_txt);
-        CPF_txt.setBounds(20, 230, 420, 20);
+        CPF_txt.setBounds(20, 230, 420, 22);
 
-        jLabel4.setText("Contato:");
+        jLabel4.setText("CPF:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 210, 180, 14);
+        jLabel4.setBounds(20, 210, 180, 16);
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
