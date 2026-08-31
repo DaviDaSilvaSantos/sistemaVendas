@@ -23,9 +23,10 @@ public class Produtos_GUI extends javax.swing.JFrame {
             int numberOfColumns = metaData.getColumnCount();
             Vector columnNames = new Vector();
             // AS LINHAS ABAIXO SÃO REFERENTES AOS CAMPOS DA TABELA CLIENTE
+            columnNames.addElement("ID");
             columnNames.addElement("QTD");
             columnNames.addElement("Produto");
-            columnNames.addElement("Valor UNI");
+            columnNames.addElement("Valor Uni");
             columnNames.addElement("Valor Final");
 
             Vector rows = new Vector();
@@ -53,7 +54,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
             Controller.Testa_BD.carregaDriver();
 
             System.out.println("realizado");
-            String sql = "SELECT * FROM cliente;";
+            String sql = "SELECT * FROM compras;";
             PreparedStatement pst = (PreparedStatement) conn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
             listaCompras.setModel(cliente(rs));
@@ -70,7 +71,11 @@ public class Produtos_GUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("mercadinho?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        comprasQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM Compras c");
+        comprasList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : comprasQuery.getResultList();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -83,7 +88,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         qntdProduto = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        nomeProduto = new javax.swing.JComboBox<>();
+        nomeProduto = new javax.swing.JComboBox<String>();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         valorUNI_txt = new javax.swing.JTextField();
@@ -101,28 +106,24 @@ public class Produtos_GUI extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        listaCompras.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"", "", "", null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "QTD", "Produto", "Valor UNI", "Valor Final"
-            }
-        ));
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, comprasList, listaCompras);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("ID");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${qntdProduto}"));
+        columnBinding.setColumnName("QTD");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nomeProduto}"));
+        columnBinding.setColumnName("Produto");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${valorUni}"));
+        columnBinding.setColumnName("Valor Uni");
+        columnBinding.setColumnClass(Float.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${valorFinal}"));
+        columnBinding.setColumnName("Valor Final");
+        columnBinding.setColumnClass(Float.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
         jScrollPane1.setViewportView(listaCompras);
 
         jPanel1.add(jScrollPane1);
@@ -173,7 +174,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(10, 11, 104, 80);
+        jPanel3.setBounds(10, 11, 100, 80);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -181,7 +182,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nome do Produto");
 
-        nomeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Refrigerante", "Salgadinho", "Suco", "Pão", "Mortadela", "Queijo" }));
+        nomeProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Refrigerante", "Salgadinho", "Suco - Tang", "Pão", "" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -287,6 +288,8 @@ public class Produtos_GUI extends javax.swing.JFrame {
             .addComponent(jTabbedPane1)
         );
 
+        bindingGroup.bind();
+
         setSize(new java.awt.Dimension(479, 429));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -296,11 +299,15 @@ public class Produtos_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_calcular_BTNActionPerformed
 
     private void adicionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarListaActionPerformed
-        Model.Funcoes_DAO.salvarInformacoes();
+        Model.Funcoes_DAO.salvarPedido();
+        this.dispose();
+        new Produtos_GUI().setVisible(true);
     }//GEN-LAST:event_adicionarListaActionPerformed
 
     private void pagar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagar_btnActionPerformed
         Model.Funcoes_DAO.opcoesPagamentos();
+        this.dispose();
+        new Cadastro_GUI().setVisible(true);
     }//GEN-LAST:event_pagar_btnActionPerformed
 
     /**
@@ -341,6 +348,9 @@ public class Produtos_GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarLista;
     private javax.swing.JButton calcular_BTN;
+    private java.util.List<View.Compras> comprasList;
+    private javax.persistence.Query comprasQuery;
+    private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -361,5 +371,6 @@ public class Produtos_GUI extends javax.swing.JFrame {
     public static javax.swing.JSpinner qntdProduto;
     public static javax.swing.JTextField valorFINAL_txt;
     public static javax.swing.JTextField valorUNI_txt;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

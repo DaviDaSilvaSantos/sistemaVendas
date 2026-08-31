@@ -138,6 +138,8 @@ public class Cadastro_GUI extends javax.swing.JFrame {
 
     private void enviar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_btnActionPerformed
         Model.Funcoes_DAO.salvarInformacoes();
+        this.dispose();
+        new Produtos_GUI().setVisible(true);
     }//GEN-LAST:event_enviar_btnActionPerformed
 
     /**
