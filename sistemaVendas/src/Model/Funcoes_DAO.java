@@ -2,74 +2,67 @@ package Model;
 
 import static View.Cadastro_GUI.*;
 import static View.Produtos_GUI.*;
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.DriverManager;
-import View.Cadastro_GUI;
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Funcoes_DAO {
 
-    static int cod, qnt;
-    static String nome, contato, cpf, nomeProdutos;
+    // Declaração das variáveis estáticas utilizadas pelos métodos da classe
+    static int qnt;
+    static String nomeProdutos;
     static double valorUNI, valorFINAL;
 
-    static String url = "jdbc:mysql://localhost:3307/mercadinho", username = "root", password = "";  // senha do BD
+    // Configurações de conexão com o banco de dados
+    static String url = "jdbc:mysql://localhost:3306/mercadinho?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    static String username = "root"; 
+    static String password = "";
 
     public static void salvarInformacoes() {
-        nome = nome_txt.getText();
-        contato = contato_txt.getText();
-        cpf = CPF_txt.getText();
+        String nome = nome_txt.getText();
+        String contato = contato_txt.getText();
+        String cpf = CPF_txt.getText();
 
         Controller.Testa_BD.carregaDriver();
 
-        try {
+        String sql = "INSERT INTO clientes(NOME, CONTATO, CPF) VALUES (?, ?, ?)";
 
-            Connection con = null;
+        try (Connection con = DriverManager.getConnection(url, username, password);
+             PreparedStatement inserir = con.prepareStatement(sql)) {
 
-            try {
+            inserir.setString(1, nome);
+            inserir.setString(2, contato);
+            inserir.setString(3, cpf);
 
-                con = (Connection) DriverManager.getConnection(url, username, password);
+            inserir.executeUpdate();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(Cadastro_GUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            JOptionPane.showMessageDialog(null, "Inserção realizada com Sucesso!!!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-            String sql = "INSERT INTO clientes(NOME, CONTATO, CPF) values('" + nome + "', '" + contato + "','" + cpf + "')";
+            nome_txt.setText("");
+            contato_txt.setText("");
+            CPF_txt.setText("");
 
-            try {
-
-                PreparedStatement inserir = (PreparedStatement) con.prepareStatement(sql);
-                inserir.execute();
-
-                JOptionPane.showMessageDialog(null, "\nInserção realizada com Sucesso!!!\n", "", -1);
-
-                nome_txt.setText("");
-                contato_txt.setText("");
-                CPF_txt.setText("");
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "\nErro na Inserção!", "ERRO!", 0);
-            }
-
-        } catch (NumberFormatException erro) {
-            JOptionPane.showMessageDialog(null, "Algo deu errado!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na Inserção/Conexão: " + ex.getMessage(), "ERRO!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public static void calcularPreco() {
+        if (nomeProduto.getSelectedItem() == null || qntdProduto.getValue() == null) {
+            return;
+        }
+
         qnt = (int) qntdProduto.getValue();
         nomeProdutos = nomeProduto.getSelectedItem().toString();
 
-        if (nomeProdutos.equals("Refrigerante")) {
+        if (nomeProdutos.equalsIgnoreCase("Refrigerante")) {
             valorUNI = 15.0;
-            valorUNI_txt.setText("15.00");
-            valorFINAL = qnt * 15.0;
-            String vFinal = String.valueOf(valorFINAL);
-            valorFINAL_txt.setText(vFinal);
+            valorUNI_txt.setText(String.format("%.2f", valorUNI));
+            valorFINAL = qnt * valorUNI;
+            valorFINAL_txt.setText(String.format("%.2f", valorFINAL));
         }
     }
 
@@ -82,10 +75,8 @@ public class Funcoes_DAO {
                 valorUNI,
                 valorFINAL
             });
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar item à tabela: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-
     }
-
 }
