@@ -157,4 +157,8 @@ public class Funcoes_DAO {
             JOptionPane.showMessageDialog(null, "Erro ao adicionar item à tabela: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public static void sair() {
+    System.exit(0);
+    }
 }

@@ -88,7 +88,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         qntdProduto = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        nomeProduto = new javax.swing.JComboBox<String>();
+        nomeProduto = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         valorUNI_txt = new javax.swing.JTextField();
@@ -102,8 +102,10 @@ public class Produtos_GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setLayout(null);
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, comprasList, listaCompras);
@@ -133,19 +135,23 @@ public class Produtos_GUI extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("LISTA DE COMPRAS");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, 10, 470, 50);
+        jLabel5.setBounds(10, 11, 452, 50);
 
+        pagar_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/pay.png"))); // NOI18N
         pagar_btn.setText("PAGAR");
+        pagar_btn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pagar_btn.setContentAreaFilled(false);
         pagar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pagar_btnActionPerformed(evt);
             }
         });
         jPanel1.add(pagar_btn);
-        pagar_btn.setBounds(160, 300, 160, 60);
+        pagar_btn.setBounds(164, 291, 139, 65);
 
         jTabbedPane1.addTab("Lista de Compras", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setLayout(null);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -174,7 +180,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(10, 11, 100, 80);
+        jPanel3.setBounds(20, 20, 100, 80);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -182,7 +188,7 @@ public class Produtos_GUI extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Nome do Produto");
 
-        nomeProduto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Refrigerante", "Salgadinho", "Suco - Tang", "Pão", "" }));
+        nomeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Refrigerante", "Salgadinho", "Suco - Tang", "Pão", "" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -204,8 +210,9 @@ public class Produtos_GUI extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel4);
-        jPanel4.setBounds(130, 10, 330, 80);
+        jPanel4.setBounds(130, 20, 330, 80);
 
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel5.setLayout(null);
 
@@ -251,22 +258,30 @@ public class Produtos_GUI extends javax.swing.JFrame {
         jPanel7.setBounds(130, 10, 300, 70);
 
         jPanel2.add(jPanel5);
-        jPanel5.setBounds(20, 180, 440, 90);
+        jPanel5.setBounds(20, 190, 440, 90);
 
+        calcular_BTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/calculator.png"))); // NOI18N
         calcular_BTN.setText("Calcular");
         calcular_BTN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        calcular_BTN.setContentAreaFilled(false);
         calcular_BTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        calcular_BTN.setFocusPainted(false);
+        calcular_BTN.setFocusable(false);
         calcular_BTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcular_BTNActionPerformed(evt);
             }
         });
         jPanel2.add(calcular_BTN);
-        calcular_BTN.setBounds(110, 110, 240, 50);
+        calcular_BTN.setBounds(110, 120, 240, 50);
 
+        adicionarLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/clipboard.png"))); // NOI18N
         adicionarLista.setText("Adicionar a Lista");
         adicionarLista.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        adicionarLista.setContentAreaFilled(false);
         adicionarLista.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adicionarLista.setFocusPainted(false);
+        adicionarLista.setFocusable(false);
         adicionarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarListaActionPerformed(evt);

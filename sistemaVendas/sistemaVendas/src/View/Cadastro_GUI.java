@@ -5,6 +5,8 @@
  */
 package View;
 
+import static Model.Funcoes_DAO.*;
+
 /**
  *
  * @author davis
@@ -39,24 +41,26 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         enviar_btn = new javax.swing.JButton();
+        sair_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("CADASTRO DE CLIENTES");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(8, 2, 450, 30);
+        jLabel1.setBounds(140, 10, 180, 30);
         jPanel1.add(nome_txt);
-        nome_txt.setBounds(20, 80, 420, 22);
+        nome_txt.setBounds(20, 80, 420, 20);
 
         jLabel2.setText("Nome Completo:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 60, 180, 16);
+        jLabel2.setBounds(20, 60, 180, 14);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -76,9 +80,9 @@ public class Cadastro_GUI extends javax.swing.JFrame {
 
         jLabel3.setText("Contato:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 130, 180, 16);
+        jLabel3.setBounds(20, 130, 180, 14);
         jPanel1.add(contato_txt);
-        contato_txt.setBounds(20, 150, 420, 22);
+        contato_txt.setBounds(20, 150, 420, 20);
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -96,11 +100,11 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(10, 120, 440, 60);
         jPanel1.add(CPF_txt);
-        CPF_txt.setBounds(20, 230, 420, 22);
+        CPF_txt.setBounds(20, 230, 420, 20);
 
         jLabel4.setText("CPF:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 210, 180, 16);
+        jLabel4.setBounds(20, 210, 180, 14);
 
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -118,9 +122,13 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 200, 440, 60);
 
+        enviar_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
         enviar_btn.setText("Enviar");
         enviar_btn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        enviar_btn.setContentAreaFilled(false);
         enviar_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        enviar_btn.setFocusPainted(false);
+        enviar_btn.setFocusable(false);
         enviar_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviar_btnActionPerformed(evt);
@@ -128,6 +136,18 @@ public class Cadastro_GUI extends javax.swing.JFrame {
         });
         jPanel1.add(enviar_btn);
         enviar_btn.setBounds(140, 280, 170, 70);
+
+        sair_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/cross.png"))); // NOI18N
+        sair_btn.setBorderPainted(false);
+        sair_btn.setContentAreaFilled(false);
+        sair_btn.setFocusable(false);
+        sair_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sair_btnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sair_btn);
+        sair_btn.setBounds(440, 0, 40, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 480, 430);
@@ -137,10 +157,14 @@ public class Cadastro_GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_btnActionPerformed
-        Model.Funcoes_DAO.salvarInformacoes();
+        salvarInformacoes();
         this.dispose();
         new Produtos_GUI().setVisible(true);
     }//GEN-LAST:event_enviar_btnActionPerformed
+
+    private void sair_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sair_btnActionPerformed
+        sair();
+    }//GEN-LAST:event_sair_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,5 +214,6 @@ public class Cadastro_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     public static javax.swing.JTextField nome_txt;
+    public static javax.swing.JButton sair_btn;
     // End of variables declaration//GEN-END:variables
 }
